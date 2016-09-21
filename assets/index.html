@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app>
+
+<head>
+    <title>Zero to Angular-Sails TDD</title>
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+</head>
+
+<body>
+    <div class="container" ng-app>
+        <br />
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel Title - Green (Success)</h3>
+            </div>
+            <div class="panel-body">
+                <label>Name:</label>
+                <input type="text" ng-model="yourName" placeholder="Enter a name here">
+                <hr>
+                <h1>Hello {{yourName}}!</h1>
+
+                <hr />
+
+                <a href="#" class="btn btn-default">Default</a>
+                <a href="#" class="btn btn-primary">Primary</a>
+                <a href="#" class="btn btn-success">Success</a>
+                <a href="#" class="btn btn-info">Info</a>
+                <a href="#" class="btn btn-warning">Warning</a>
+                <a href="#" class="btn btn-danger">Danger</a>
+                <a href="#" class="btn btn-link">Link</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/jquery-3.1.0.min.js"></script>
+    <script src="/js/dependencies/angular.min.js"></script>
+    <script src="/js/dependencies/bootstrap.min.js"></script>
+    <!--SCRIPTS END-->
+</body>
+
+</html>
