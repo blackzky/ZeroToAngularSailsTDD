@@ -108,9 +108,9 @@ $ npm install -g grunt-cli
 	- Refer to http://bootswatch.com/paper for a demo of the theme
 	- Restart server (no need to manually restart if you are using nodemon) and go to Go to http://localhost:1337
 		- If you get errors like "Bootstrap's javascript requires jquery...", run the script below before starting the server
-```
-$ grunt clean
-```
+    ```
+    $ grunt clean
+    ```
 
 # AngularJS
 1. Download Angular - https://angularjs.org (v1.5.x)
@@ -119,19 +119,42 @@ $ grunt clean
 2. Test Angular.
 	- Replace content of "ZeroToAngularSailsTDD/views/homepage.ejs" with:
   ```
-  // Angular demo (code snipplet to be inserted here...)
+  <div class="container" ng-app>
+      <br />
+      <div class="panel panel-success">
+          <div class="panel-heading">
+              <h3 class="panel-title">Panel Title - Green (Success)</h3>
+          </div>
+          <div class="panel-body">
+              <label>Name:</label>
+              <input type="text" ng-model="yourName" placeholder="Enter a name here">
+              <hr>
+              <h1>Hello {{yourName}}!</h1>
+
+              <hr />
+
+              <a href="#" class="btn btn-default">Default</a>
+              <a href="#" class="btn btn-primary">Primary</a>
+              <a href="#" class="btn btn-success">Success</a>
+              <a href="#" class="btn btn-info">Info</a>
+              <a href="#" class="btn btn-warning">Warning</a>
+              <a href="#" class="btn btn-danger">Danger</a>
+              <a href="#" class="btn btn-link">Link</a>
+          </div>
+      </div>
+  </div>
   ```
+
 # Static Front-end
 1. Add a file "index.html" in "ZeroToAngularSailsTDD/assets" folder, with the following content:
-	  ```
-  // HTML Content (code snipplet to be inserted here...)
+  - Refer to https://github.com/blackzky/ZeroToAngularSailsTDD/blob/master/assets/index.html
+2. Update route config
+  - Remove (or comment out) the following line in "ZeroToAngularSailsTDD/config/routes.js":
   ```
-2. Remove (or comment out) the following line in "ZeroToAngularSailsTDD/config/routes.js":
-```
-'/': {
-	view: 'homepage'
-}
-```
+  '/': {
+    view: 'homepage'
+  }
+  ```
 3. Delete "homepage.ejs" from "ZeroToAngularSailsTDD/views"
 
 # GIT
