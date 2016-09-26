@@ -33,11 +33,12 @@ $ npm -v
   $ cd C:\Projects
   ```
 3. Create Sails Project
-        ```
-        $ sails new ZeroToAngularSailsTDD
-        $ cd ZeroToAngularSailsTDD
-        $ sails lift
-        ```
+  - Enter the following commands
+  ```
+  $ sails new ZeroToAngularSailsTDD
+  $ cd ZeroToAngularSailsTDD
+  $ sails lift
+  ```
 4. Go to http://localhost:1337
 5. Press CTRL+C to stop server
 6. Read more in https://github.com/sails101
@@ -72,40 +73,40 @@ $ npm install -g grunt-cli
 	2. Copy "jquery-3.1.0.min.js" into the "ZeroToAngularSailsTDD/assets/js/dependencies/" folder
 	3. Ensure that sails loads jQuery first before bootstrap.min.js:
 		- Modify "ZeroToAngularSailsTDD/tasks/pipeline.js":
-```
-...
-// Dependencies like jQuery, or Angular are brought in here
-'js/dependencies/jquery-3.1.0.min.js',
-'js/dependencies/**/*.js',
-....
-```			
+    ```
+    ...
+    // Dependencies like jQuery, or Angular are brought in here
+    'js/dependencies/jquery-3.1.0.min.js',
+    'js/dependencies/**/*.js',
+    ....
+    ```			
 6. Check if bootstrap and other components was properly added
-	1. Replace content of "ZeroToAngularSailsTDD/views/homepage.ejs" with:
-```
-<div class='container'>
-	<br />
-	<div class='panel panel-success'>
-		<div class='panel-heading'>
-			<h3 class='panel-title'>Panel Title - Green (Success)</h3>
-		</div>
-		<div class='panel-body'>
-			Panel Content
+	- Replace content of "ZeroToAngularSailsTDD/views/homepage.ejs" with:
+  ```
+  <div class='container'>
+    <br />
+    <div class='panel panel-success'>
+      <div class='panel-heading'>
+        <h3 class='panel-title'>Panel Title - Green (Success)</h3>
+      </div>
+      <div class='panel-body'>
+        Panel Content
 
-			<hr />
+        <hr />
 
-			<a href="#" class="btn btn-default">Default</a>
-			<a href="#" class="btn btn-primary">Primary</a>
-			<a href="#" class="btn btn-success">Success</a>
-			<a href="#" class="btn btn-info">Info</a>
-			<a href="#" class="btn btn-warning">Warning</a>
-			<a href="#" class="btn btn-danger">Danger</a>
-			<a href="#" class="btn btn-link">Link</a>
-		</div>
-	</div>
-</div>
-```
-	2. Refer to http://bootswatch.com/paper for a demo of the theme
-	3. Restart server (no need to manually restart if you are using nodemon) and go to Go to http://localhost:1337
+        <a href="#" class="btn btn-default">Default</a>
+        <a href="#" class="btn btn-primary">Primary</a>
+        <a href="#" class="btn btn-success">Success</a>
+        <a href="#" class="btn btn-info">Info</a>
+        <a href="#" class="btn btn-warning">Warning</a>
+        <a href="#" class="btn btn-danger">Danger</a>
+        <a href="#" class="btn btn-link">Link</a>
+      </div>
+    </div>
+  </div>
+  ```
+	- Refer to http://bootswatch.com/paper for a demo of the theme
+	- Restart server (no need to manually restart if you are using nodemon) and go to Go to http://localhost:1337
 		- If you get errors like "Bootstrap's javascript requires jquery...", run the script below before starting the server
 ```
 $ grunt clean
@@ -117,11 +118,14 @@ $ grunt clean
 	2. Copy "angular.min.js" into the "ZeroToAngularSailsTDD/assets/js/dependencies/" folder
 2. Test Angular.
 	- Replace content of "ZeroToAngularSailsTDD/views/homepage.ejs" with:
-	  // Angular demo
-
+  ```
+  // Angular demo (code snipplet to be inserted here...)
+  ```
 # Static Front-end
 1. Add a file "index.html" in "ZeroToAngularSailsTDD/assets" folder, with the following content:
-	// HTML Content
+	  ```
+  // HTML Content (code snipplet to be inserted here...)
+  ```
 2. Remove (or comment out) the following line in "ZeroToAngularSailsTDD/config/routes.js":
 ```
 '/': {
