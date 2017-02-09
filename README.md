@@ -170,6 +170,7 @@ Download and install GIT - https://git-scm.com/download/win
 
 # TDD Setup: Client Unit Test - Karma (and Jasmine) Setup
 Required: Perform "TDD Setup: Initial Setup" first
+
 1. Go to https://code.angularjs.org/1.6.1/ and download "angular-mocks.js"
 2. Paste "angular-mocks.js" under test/client/lib
 3. Add Karma npm modules
@@ -207,7 +208,7 @@ Required: Perform "TDD Setup: Initial Setup" first
     ```
     $ npm install karma-jasmine-html-reporter --save-dev
     ```
-6. Update karma config:
+6. Update karma config
     ```
     module.exports = function(config) {
       config.set({
