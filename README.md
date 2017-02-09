@@ -174,6 +174,7 @@ Required: Perform "TDD Setup: Initial Setup" first
 1. Go to https://code.angularjs.org/1.6.1/ and download "angular-mocks.js"
 2. Paste "angular-mocks.js" under test/client/lib
 3. Add Karma npm modules
+
     ```
     $ npm install karma karma-jasmine jasmine-core karma-chrome-launcher --save-dev
     $ npm install -g karma-cli
