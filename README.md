@@ -205,10 +205,12 @@ Required: Perform "TDD Setup: Initial Setup" first
     ```
     > You can modify this config later in "test/client/karma.conf.js"
 5. Add HTML reporter
+
     ```
     $ npm install karma-jasmine-html-reporter --save-dev
     ```
 6. Update karma config
+
     ```
     module.exports = function(config) {
       config.set({
@@ -222,6 +224,7 @@ Required: Perform "TDD Setup: Initial Setup" first
     };
     ```
 7. Update package.json to add script for Unit test
+
     ```
     ...
     "scripts": {
