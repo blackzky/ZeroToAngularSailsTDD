@@ -26,7 +26,9 @@
     "scripts": {
         "debug": "node debug app.js",
         "start": "node app.js",
-        "test": "karma start ./test/client/karma.conf.js"
+        "test": "karma start ./test/client/karma.conf.js",
+        "sel": "webdriver-manager update && webdriver-manager start",
+        "e2e": "protractor ./test/client/protractor.conf.js"
     },
     "main": "app.js",
     "repository": {

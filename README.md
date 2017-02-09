@@ -308,6 +308,68 @@ Required: Perform "TDD Setup: Initial Setup" first
     ```
     > Save the file and refresh the HTML reporter. Test should now pass.
 
+# TDD Setup: Client E2E Test - Protractor
+1. Intall Protractor and rune webdriver-manager update
+
+    ```
+    $ npm install -g protractor
+    $ webdriver-manager update
+    ```
+2. Create the config file for Protractor (test/client/protractor.conf.js)
+
+    ```
+    // Run the e2e test using:
+    // $ protractor ./test/protractor.conf.js
+
+    // [Important] Selenium server must be running already
+    // $ webdriver-manager start
+
+
+    exports.config = {
+        framework: 'jasmine',
+        seleniumAddress: 'http://localhost:4444/wd/hub',
+        specs: ['E2E/**/*.spec.js']
+    };
+    ```
+3. Update package.json
+    > Add the scripts to run Selenium server and start E2E testing
+    
+    ```
+    ...
+    "scripts": {
+        "debug": "node debug app.js",
+        "start": "node app.js",
+        "test": "karma start ./test/client/karma.conf.js",
+        "sel": "webdriver-manager update && webdriver-manager start",
+        "e2e": "protractor ./test/client/protractor.conf.js"
+    }
+    ...
+    ```
+4. Fail Test - Create sample protractor test spec (test/client/E2E/sample.spec.js)
+
+    ```
+    describe('Sample Homepage', function() {
+        it('should have a title', function() {
+            browser.get('http://localhost:1337');
+
+            expect(browser.getTitle()).toEqual('');
+        });
+    });
+    ```
+5. Run Selenium server
+
+    ```
+    npm run sel
+    ```
+
+6. Rune E2E test
+
+    ```
+    npm run e2e
+    ```
+
+7. Udpdate to pass and run server again
+
 # Notes
 1. Environment used was Windows.
 
@@ -316,6 +378,8 @@ Required: Perform "TDD Setup: Initial Setup" first
 - Angular JS - https://www.angularjs.org/
 - Bootstrap - http://getbootstrap.com/
 - Bootstrap Theme (Paper) - http://bootswatch.com/paper/
+- Jasmine - https://jasmine.github.io/edge/introduction
+- Protractor - http://www.protractortest.org/#/
 - TDD
   - [TDD basics with angular and jasmine](http://www.slideshare.net/iquark/tdd-basics-with-angular-and-jasmine)
   - [Unit testing best practices angularjs](http://andyshora.com/unit-testing-best-practices-angularjs.html)
