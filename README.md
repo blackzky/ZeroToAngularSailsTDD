@@ -390,5 +390,5 @@ Required: Perform "TDD Setup: Initial Setup" first
 
 # Common issues
 - [Spec Failure] TypeError: Function.prototype.bind.apply(...) is not a constructor
-- Controllers should be instantiable (i.e. called with new), so things like arrow functions is not supported
-- [Link](https://github.com/angular/angular.js/issues/14814)
+  - Controllers should be instantiable (i.e. called with new), so things like arrow functions is not supported
+  - [Link](https://github.com/angular/angular.js/issues/14814)
