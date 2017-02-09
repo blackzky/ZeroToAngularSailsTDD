@@ -164,52 +164,52 @@ Download and install GIT - https://git-scm.com/download/win
 1. Create a 'test' folder in the root directory.
 2. Create a 'client' and 'server' folder.
 3. Create the following folders under test/client:
- - E2E
- - lib
- - Unit
+    - E2E/
+    - lib/
+    - Unit/
 
- # TDD Setup: Client Unit Test - Karma (and Jasmine) Setup
- Required: Perform "TDD Setup: Initial Setup" first
- 1. Go to https://code.angularjs.org/1.6.1/ and download "angular-mocks.js"
- 2. Paste "angular-mocks.js" under test/client/lib
- 3. Add Karma npm modules
+# TDD Setup: Client Unit Test - Karma (and Jasmine) Setup
+Required: Perform "TDD Setup: Initial Setup" first
+1. Go to https://code.angularjs.org/1.6.1/ and download "angular-mocks.js"
+2. Paste "angular-mocks.js" under test/client/lib
+3. Add Karma npm modules
     ```
     $ npm install karma karma-jasmine jasmine-core karma-chrome-launcher --save-dev
     $ npm install -g karma-cli
     ```
-  4. Change directory to "test/client/" and run Karma config (after installation in #3 has completed)
-     ```
-     $ karma init
-     
-     - Which testing framework do you want to use ?
-     -> jasmine
+4. Change directory to "test/client/" and run Karma config (after installation in #3 has completed)
+    ```
+    $ karma init
+    
+    - Which testing framework do you want to use ?
+    -> jasmine
 
-     - Do you want to use Require.js ?
-     -> no
+    - Do you want to use Require.js ?
+    -> no
 
-     - Do you want to capture any browsers automatically ?
-     -> Chrome
+    - Do you want to capture any browsers automatically ?
+    -> Chrome
 
-     - What is the location of your source and test files ?
-     -> assets/js/dependencies/angular.min.js
-     -> test/client/lib/angular-mocks.js
-     -> assets/js/app/**/*.js            
-     -> test/client/unit/**/*.spec.jss
+    - What is the location of your source and test files ?
+    -> assets/js/dependencies/angular.min.js
+    -> test/client/lib/angular-mocks.js
+    -> assets/js/app/**/*.js            
+    -> test/client/unit/**/*.spec.jss
 
-     - Should any of the files included by the previous patterns be excluded ?
-     -> <Enter>
+    - Should any of the files included by the previous patterns be excluded ?
+    -> <Enter>
 
-     - Do you want Karma to watch all the files and run the tests on change ?
-     -> yes
-     ```
-     > You can modify this config later in "test/client/karma.conf.js"
-  5. Add HTML reporter
-     ```
-     $ npm install karma-jasmine-html-reporter --save-dev
-     ```
-  6. Update karma config:
-     ```
-     module.exports = function(config) {
+    - Do you want Karma to watch all the files and run the tests on change ?
+    -> yes
+    ```
+    > You can modify this config later in "test/client/karma.conf.js"
+5. Add HTML reporter
+    ```
+    $ npm install karma-jasmine-html-reporter --save-dev
+    ```
+6. Update karma config:
+    ```
+    module.exports = function(config) {
       config.set({
         // base path that will be used to resolve all patterns (eg. files, exclude)
         // [IMPORTANT] Since our config file is in "./test/client/karma.conf.js" we need to map our base path properly
@@ -218,108 +218,108 @@ Download and install GIT - https://git-scm.com/download/win
         reporters: ['kjhtml']
         ...
       })
-     };
-     ```
-  7. Update package.json to add script for Unit test
-     ```
-     ...
-     "scripts": {
-        "debug": "node debug app.js",
-        "start": "node app.js",
-        "test": "karma start ./test/client/karma.conf.js",
-     }
-     ...
-     ```
-  8. Create sample test file (test/client/unit/sample/sample.spec.js)
-     ```
-     /* jshint esversion: 6 */
-     (() => {
+    };
+    ```
+7. Update package.json to add script for Unit test
+    ```
+    ...
+    "scripts": {
+      "debug": "node debug app.js",
+      "start": "node app.js",
+      "test": "karma start ./test/client/karma.conf.js",
+    }
+    ...
+    ```
+8. Create sample test file (test/client/unit/sample/sample.spec.js)
+    ```
+    /* jshint esversion: 6 */
+    (() => {
+      'use strict';
+
+      describe('Sample Suite ', () => {
+          var $controller;
+
+          beforeEach(module('SampleApp'));
+          beforeEach(inject(($injector) => {
+              $controller = $injector.get('$controller');
+          }));
+
+
+          it('show show that 1 + 1 = 2', () => {
+              var SampleCtrl = $controller('SampleCtrl', { $scope: {} });
+
+              var sum = SampleCtrl.Add(1, 1);
+              expect(sum).toEqual(2);
+          });
+      });
+    })();
+    ```
+9. Create a sample Angular module (assets/js/app/sample/sample.js)
+    ```
+    /* jshint esversion: 6 */
+    (() => {
         'use strict';
 
-        describe('Sample Suite ', () => {
-            var $controller;
+        angular.module('SampleApp', [])
+            .controller('SampleCtrl', function() {
+                var vm = this;
 
-            beforeEach(module('SampleApp'));
-            beforeEach(inject(($injector) => {
-                $controller = $injector.get('$controller');
-            }));
+                // CODE HERE
 
-
-            it('show show that 1 + 1 = 2', () => {
-                var SampleCtrl = $controller('SampleCtrl', { $scope: {} });
-
-                var sum = SampleCtrl.Add(1, 1);
-                expect(sum).toEqual(2);
+                return vm;
             });
-        });
-      })();
-      ```
-  9. Create a sample Angular module (assets/js/app/sample/sample.js)
-      ```
-      /* jshint esversion: 6 */
-      (() => {
-          'use strict';
+    })();
+    ```
+10. Run Unit test - First failed test
+    ```
+    $ npm test
+    ```
+    > A new chrome window should pop-up. Click "Debug" to view the HTML reporter. CTRL+C to stop Unit test server.
+    > The test should fail.
+    
+    ```
+    TypeError: SampleCtrl.Add is not a function
+    ```
+11. Update code file again to pass the test(assets/js/app/sample/sample.js)
+    ```
+    /* jshint esversion: 6 */
 
-          angular.module('SampleApp', [])
-              .controller('SampleCtrl', function() {
-                  var vm = this;
+    (() => {
+        'use strict';
 
-                  // CODE HERE
+        angular.module('SampleApp', [])
+            .controller('SampleCtrl', function() {
+                var vm = this;
 
-                  return vm;
-              });
-      })();
-      ```
-  10. Run Unit test - First failed test
-      ```
-      $ npm test
-      ```
-      > A new chrome window should pop-up. Click "Debug" to view the HTML reporter. CTRL+C to stop Unit test server.
-      > The test should fail.
-      
-      ```
-      TypeError: SampleCtrl.Add is not a function
-      ```
-  11. Update code file again to pass the test(assets/js/app/sample/sample.js)
-      ```
-      /* jshint esversion: 6 */
+                vm.Add = Add;
 
-      (() => {
-          'use strict';
+                function Add(x, y) {
+                    return x + y;
+                }
 
-          angular.module('SampleApp', [])
-              .controller('SampleCtrl', function() {
-                  var vm = this;
-
-                  vm.Add = Add;
-
-                  function Add(x, y) {
-                      return x + y;
-                  }
-
-                  return vm;
-              });
-      })();
-      ```
-      > Save the file and refresh the HTML reporter. Test should now pass.
+                return vm;
+            });
+    })();
+    ```
+    > Save the file and refresh the HTML reporter. Test should now pass.
 
 # Notes
 1. Environment used was Windows.
 
 # References
- - Sails JS - http://sailsjs.com/
- - Angular JS - https://www.angularjs.org/
- - Bootstrap - http://getbootstrap.com/
- - Bootstrap Theme (Paper) - http://bootswatch.com/paper/
- - TDD
-    - [TDD basics with angular and jasmine](http://www.slideshare.net/iquark/tdd-basics-with-angular-and-jasmine)
-    - [Unit testing best practices angularjs](http://andyshora.com/unit-testing-best-practices-angularjs.html)
-    - [Front end javascript/introduction to angular test driven development](https://www.pluralsight.com/guides/front-end-javascript/introduction-to-angular-test-driven-development)
-    - [Testing angularjs with jasmine and karma part 1](https://scotch.io/tutorials/testing-angularjs-with-jasmine-and-karma-part-1)
-    - [Testing angularjs with jasmine and karma-part 2](https://scotch.io/tutorials/testing-angularjs-with-jasmine-and-karma-part-2)
-    - [Karma-Jasmine HTML Reporter NPM](https://www.npmjs.com/package/karma-jasmine-html-reporter)
+- Sails JS - http://sailsjs.com/
+- Angular JS - https://www.angularjs.org/
+- Bootstrap - http://getbootstrap.com/
+- Bootstrap Theme (Paper) - http://bootswatch.com/paper/
+- TDD
+  - [TDD basics with angular and jasmine](http://www.slideshare.net/iquark/tdd-basics-with-angular-and-jasmine)
+  - [Unit testing best practices angularjs](http://andyshora.com/unit-testing-best-practices-angularjs.html)
+  - [Front end javascript/introduction to angular test driven development](https://www.pluralsight.com/guides/front-end-javascript/introduction-to-angular-test-driven-development)
+  - [Testing angularjs with jasmine and karma part 1](https://scotch.io/tutorials/testing-angularjs-with-jasmine-and-karma-part-1)
+  - [Testing angularjs with jasmine and karma-part 2](https://scotch.io/tutorials/testing-angularjs-with-jasmine-and-karma-part-2)
+  - [Karma-Jasmine HTML Reporter NPM](https://www.npmjs.com/package/karma-jasmine-html-reporter)
 
 # Common issues
 - [Spec Failure] TypeError: Function.prototype.bind.apply(...) is not a constructor
-  - Controllers should be instantiable (i.e. called with new), so things like arrow functions is not supported
-  - [Link](https://github.com/angular/angular.js/issues/14814)
+- Controllers should be instantiable (i.e. called with new), so things like arrow functions is not supported
+- [Link](https://github.com/angular/angular.js/issues/14814)
